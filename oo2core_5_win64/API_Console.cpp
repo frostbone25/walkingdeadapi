@@ -4,7 +4,9 @@
 #include <vector>
 #include <iostream>
 
+#include "oo2core_5_win64.h"
 #include "API_Console.h"
+#include "Scene.h"
 
 using namespace std;
 using namespace moddingApi;
@@ -19,11 +21,16 @@ int GetCommandIndex(string);
 // Command Functions
 void c_Help();
 void c_ConvertMessage();
+void c_SetTimeScale();
+void c_GetTimeScale();
 
 void API_Console::InitializeConsole()
 {
 	AddCommand("Help", (uintptr_t)c_Help, 0);
 	AddCommand("ConvertMessage", (uintptr_t)c_ConvertMessage, 1);
+	AddCommand("GetWorldSceneName", (uintptr_t)Scene::GetWorldSceneName, 1);
+	AddCommand("SetTimeScale", (uintptr_t)c_SetTimeScale, 0);
+	AddCommand("GetTimeScale", (uintptr_t)c_GetTimeScale, 0);
 }
 
 typedef void(__stdcall * f)();
@@ -67,6 +74,29 @@ void c_ConvertMessage()
 	//char * param1_c = strcpy(new char[param1.length() + 1], param1.c_str());
 
 	cout << "Scene: " << Scene::GetWorldSceneName() << endl;
+}
+
+void c_SetTimeScale()
+{
+	float t; // float variable to store the new timescale
+
+	cout << "Timescale: "; // show Timescale: on console
+	cin >> t; // get float value from keyboard
+	cout << endl; // end line
+
+	typedef void(__fastcall* fc_funct)(float scale); // declare our function to call from the exe. it takes a float as a parameter
+	fc_funct fc_cc_funct = (fc_funct)(oo2core_5_win64::moduleBase + 0x348F70); // offset 0x348F70 in GameApp.exe is where the function is
+	fc_cc_funct(t); // call the function with our parameter
+
+	cout << "Set timescale to " << t << endl; // show on console
+}
+
+void c_GetTimeScale()
+{
+	typedef float(__fastcall* fc_funct)(); // declare our function to call from the exe. no parameters
+	fc_funct fc_cc_funct = (fc_funct)(oo2core_5_win64::moduleBase + 0x348F60); // offset 0x348F60 in GameApp.exe is where the function is
+	float f = fc_cc_funct(); // declare float to store the returned value, and then call function
+	cout << "Actual timescale: " << f << endl; // show value on console
 }
 
 void AddCommand(string command, uintptr_t function, int paramCount)

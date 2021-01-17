@@ -22,12 +22,33 @@ DWORD WINAPI WD_Main::Start()
 
 	while (true)
 	{
-		std::string cmd;
-		cout << "> ";
-		cin >> cmd;
+		if (GetKeyState('Q') < 0)
+		{
+			std::string cmd = "SetTimeScale 1";
+			API_Console::DoConsoleCommand(cmd);
+		}
+		else if (GetKeyState('E') < 0)
+		{
+			std::string cmd = "SetTimeScale 2";
+			API_Console::DoConsoleCommand(cmd);
+		}
+		else if (GetKeyState('R') < 0)
+		{
+			std::string cmd = "GetTimeScale";
+			API_Console::DoConsoleCommand(cmd);
+		}
+		else
+		{
+			//leaving this on hangs the console and any input detection
+			/*
+			std::string cmd;
+			cout << "> ";
+			cin >> cmd;
 
-		API_Console::DoConsoleCommand(cmd);
-
+			API_Console::DoConsoleCommand(cmd);
+			*/
+		}
+		
 		Sleep(100);
 	}
 

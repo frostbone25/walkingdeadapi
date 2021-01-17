@@ -1,0 +1,10 @@
+﻿  WD_Main.cpp
+A:\Work\MODDING\Github\walkingdeadapi\oo2core_5_win64\WD_Main.cpp(18,2): warning C4996: 'freopen': This function or variable may be unsafe. Consider using freopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+A:\Work\MODDING\Github\walkingdeadapi\oo2core_5_win64\WD_Main.cpp(19,2): warning C4996: 'freopen': This function or variable may be unsafe. Consider using freopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     Creating library A:\Work\MODDING\Github\walkingdeadapi\x64\Release\oo2core_5_win64.lib and object A:\Work\MODDING\Github\walkingdeadapi\x64\Release\oo2core_5_win64.exp
+  Generating code
+  42 of 261 functions (16.1%) were compiled, the rest were copied from previous compilation.
+    32 functions were new in current compilation
+    35 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  oo2core_5_win64.vcxproj -> A:\Work\MODDING\Github\walkingdeadapi\x64\Release\oo2core_5_win64.dll
